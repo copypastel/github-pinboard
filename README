@@ -1,0 +1,6 @@
+Display a repo's commiters in a fashionable way.
+
+Installation:
+* Include githubPinboard.js in your page
+* Call GithubPinboard(<user>, <repo>, <containerId>)
+* Profit!
