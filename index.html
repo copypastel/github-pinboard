@@ -1,0 +1,168 @@
+<!html>
+<html>
+  <head>
+    <title>Github Pinboard</title>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        font-family: helvetica, arial, sans-serif;
+      }
+
+      .githubpinboard-circle {
+        border-radius: 1000px;
+        width: 50px;
+        height: 50px;
+        -webkit-box-shadow: 0px 0px 5px #111;
+        -moz-box-shadow: 0px 0px 5px #111;
+        box-shadow: 0px 0px 5px #111;
+        margin: 10px;
+        float: left;
+      }
+
+      body {
+        padding: 20px;
+      }
+
+      #fork_me {
+        padding: 0;
+        height: 149px;
+        width: 149px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: url(forkme.png);
+      }
+
+      #wrapper {
+        width: 600px;
+        margin: 0 auto;
+      }
+
+      .section {
+        padding: 20px;
+      }
+
+      div.pinboard {
+      }
+
+      .githubpinboard-circle:last-child {
+        margin-bottom: 30px;
+      }
+
+      h1 {
+        font-family: 'Satisfy', cursive;
+      }
+
+      h2 {
+        clear: both;
+        font-family: 'Montserrat', sans-serif;
+        font-family: 'Satisfy', cursive;
+        font-size: 30px;
+      }
+
+      h2 a {
+        font-family: 'Satisfy', cursive;
+        text-decoration: none;
+        color: crimson;
+      }
+
+      #copypastel {
+        position: relative;
+        float: left;
+        margin-left: -100px;
+        margin-top: 5px;
+      }
+    </style>
+    <script src="lib/githubPinboard.js"></script>
+    <script>
+      window.onload = function() {
+        new GithubPinboard("camping", "camping", "campingPinboard");
+        new GithubPinboard("hpricot", "hpricot", "hpricotPinboard");
+        new GithubPinboard("fogus", "potion", "shoesPinboard");
+        new GithubPinboard("copypastel", "github-pinboard", "contributors");
+      }
+    </script>
+  </head>
+  <body>
+    <a href="http://github.com/copypastel/github-pinboard">
+      <div id="fork_me"></div>
+    </a>
+    <div id="wrapper">
+      <a href="http://copypastel.com">
+        <img src="cloud.png" id="copypastel">
+      </a>
+      <h1 style="padding-top: 5px; float: left;">Github Pinboard</h1>
+      <a href="http://twitter.com/ecin">
+        <img src="twitter.png" style="float: left; margin-left: 3px;">
+      </a>
+      <div class="section" style="clear: both;">
+        Be proud of your contributors, and display them for all the world to see!
+      </div>
+
+      <h2>How To Use</h2>
+      <div class="section">
+        <ul>
+          <li>
+          Include the library:
+          <pre>
+            &lt;script src="http://copypastel.github.com/github-pinboard/lib/github-pinboard.js"></script>
+          </pre>
+          </li>
+          <li>
+            Create an element to hold the pinboard:
+            <pre>
+              &lt;div id="node-pinboard"&gt;&lt;div&gt;
+            </pre>
+            </li>
+            <li>
+            Create the pinboard:
+            <pre>
+              &lt;script&gt;
+                /*  Only need the user and repo names are needed to display
+                 *  a pinboard. containerId defaults to "github-pinboard".
+                 */
+                var user = "joyent", repo = "node", containerId = "node-pinboard"
+                new GithubPinboard(user, repo, containerId); 
+              &lt;/script&gt;
+            </pre>
+            </li>
+            <li>
+            Style to your liking:
+            <pre>
+              .github-pinboard-pin {
+                background: black;
+              }
+            </pre>
+            </li>
+        </ul>
+      </div>
+      <h2>Samples</h2>
+      <h2>
+        <a href="http://github.com/camping/camping">
+          camping/camping
+        </a>
+      </h2>
+      <div id="campingPinboard" class="pinboard"></div>
+
+      <h2>
+        <a href="http://github.com/hpricot/hpricot">
+          hpricot/hpricot
+        </a>
+      </h2>
+      <div id="hpricotPinboard" class="pinboard"></div>
+
+      <h2>
+        <a href="http://github.com/shoes/shoes">
+          fogus/potion
+        </a>
+      </h2>
+      <div id="shoesPinboard" class="pinboard"></div>
+
+      <h2>Our Own Contributors</h2>
+      <div id="contributors"></div>
+    </div>
+  </body>
+</html>
