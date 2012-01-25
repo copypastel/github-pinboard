@@ -218,7 +218,8 @@
       <span class="Special">  </span><span class="Comment">/*  Only the user and repo names are needed to display</span>
       <span class="Comment">  *  a pinboard. containerId defaults to &quot;github-pinboard&quot;.</span>
       <span class="Comment">  */</span>
-      <span class="Special">  </span><span class="Identifier">var</span><span class="Special"> user = </span><span class="String">&quot;joyent&quot;</span><span class="Special">, repo = </span><span class="String">&quot;node&quot;</span><span class="Special">, containerId = </span><span class="String">&quot;github-pinboard&quot;</span>
+      <span class="Special">  </span><span class="Identifier">var</span><span class="Special"> user = </span><span class="String">&quot;joyent&quot;</span><span class="Special">, repo = </span><span class="String">&quot;node&quot;</span><span class="Special">, containerId = </span><span class="String">&quot;github-pinboard&quot;</span><span class="Special">; </span>
+
       <span class="Special">  </span><span class="Statement">window</span><span class="Special">.onload = </span><span class="Identifier">function</span>()<span class="Special"> </span><span class="Identifier">{</span>
       <span class="Special">    </span><span class="Statement">new</span><span class="Special"> GithubPinboard</span>(<span class="Special">user, repo, containerId</span>)<span class="Special">; </span>
       <span class="Special">  </span><span class="Identifier">}</span>
