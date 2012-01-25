@@ -1,4 +1,4 @@
-.githubpinboard-circle {
+.github-pinboard-pin {
   border-radius: 1000px;
   width: 50px;
   height: 50px;
@@ -7,4 +7,10 @@
   box-shadow: 0px 0px 5px #111;
   margin: 10px;
   float: left;
+}
+
+.github-pinboard-spinner {
+  height: 16px;
+  width: 16px;
+  background: url(http://copypastel.github.com/github-pinboard/lib/spinner.gif);
 }

@@ -2,24 +2,13 @@
 <html>
   <head>
     <title>Github Pinboard</title>
-    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <script src="http://copypastel.github.com/github-pinboard/lib/github-pinboard.js"></script>
     <style>
       * {
         padding: 0;
         margin: 0;
         font-family: helvetica, arial, sans-serif;
-      }
-
-      .githubpinboard-circle {
-        border-radius: 1000px;
-        width: 50px;
-        height: 50px;
-        -webkit-box-shadow: 0px 0px 5px #111;
-        -moz-box-shadow: 0px 0px 5px #111;
-        box-shadow: 0px 0px 5px #111;
-        margin: 10px;
-        float: left;
       }
 
       body {
@@ -58,7 +47,6 @@
 
       h2 {
         clear: both;
-        font-family: 'Montserrat', sans-serif;
         font-family: 'Satisfy', cursive;
         font-size: 30px;
       }
@@ -75,6 +63,65 @@
         margin-left: -100px;
         margin-top: 5px;
       }
+
+      pre { 
+        font-family: monospace; 
+        color: #000000; 
+        background-color: #ffffff; 
+        font-size: 16px;
+      }
+
+      .String { color: #4a708b; }
+
+      .Type { 
+        color: #008b00; 
+        font-weight: bold; 
+      }
+
+      .Statement { 
+        color: #b03060; 
+        font-weight: bold; 
+      }
+
+      .Identifier { 
+        color: #458b74; 
+      }
+
+      .Comment { 
+        color: #0000ee; 
+        font-style: italic; 
+      }
+
+      pre {
+        margin-top: 13px;
+      }
+
+      .subtitle {
+        color: crimson;
+        font-weight: bold;
+        font-style: italic;
+        text-indent: 20px;
+        line-height: 22px;
+      }
+
+      #demo {
+        padding: 20px;
+      }
+
+      #github-pinboard {
+        max-height: 280px;
+        overflow: hidden;
+      }
+
+      input[type="text"] {
+        border: 1px solid #ccc;
+        padding: 5px;
+        font-size: 16px;
+        width: 180px;
+        margin-bottom: 5px;
+      }
+
+      label { font-family: monospace; font-size: 16px; }
     </style>
     <script src="lib/githubPinboard.js"></script>
     <script>
@@ -84,6 +131,19 @@
         new GithubPinboard("fogus", "potion", "shoesPinboard");
         new GithubPinboard("copypastel", "github-pinboard", "contributors");
       }
+
+      var pinIt = function(event) {  
+        var container = document.getElementById("github-pinboard");
+        container.innerHTML = "";
+
+        var user = document.getElementsByName("user")[0].value;
+        var repo = document.getElementsByName("repo")[0].value;
+
+        new GithubPinboard(user, repo);
+
+        return false;
+      }
+
     </script>
   </head>
   <body>
@@ -98,48 +158,25 @@
       <a href="http://twitter.com/ecin">
         <img src="twitter.png" style="float: left; margin-left: 3px;">
       </a>
-      <div class="section" style="clear: both;">
-        Be proud of your contributors, and display them for all the world to see!
+      <div class="section subtitle">
+        Show off your contributors in style! 
       </div>
-
-      <h2>How To Use</h2>
-      <div class="section">
-        <ul>
-          <li>
-          Include the library:
-          <pre>
-            &lt;script src="http://copypastel.github.com/github-pinboard/lib/github-pinboard.js"></script>
-          </pre>
-          </li>
-          <li>
-            Create an element to hold the pinboard:
-            <pre>
-              &lt;div id="node-pinboard"&gt;&lt;div&gt;
-            </pre>
-            </li>
-            <li>
-            Create the pinboard:
-            <pre>
-              &lt;script&gt;
-                /*  Only need the user and repo names are needed to display
-                 *  a pinboard. containerId defaults to "github-pinboard".
-                 */
-                var user = "joyent", repo = "node", containerId = "node-pinboard"
-                new GithubPinboard(user, repo, containerId); 
-              &lt;/script&gt;
-            </pre>
-            </li>
-            <li>
-            Style to your liking:
-            <pre>
-              .github-pinboard-pin {
-                background: black;
-              }
-            </pre>
-            </li>
-        </ul>
+      <h2>Try it</h2>
+      <div id="demo">
+        <form onSubmit="pinIt(); return false;">
+          <label>
+            User
+            <input type="text" name="user" placeholder="user">
+          </label>
+          <br>
+          <label>
+            Repo
+            <input type="text" name="repo" placeholder="repo">
+          </label>
+        <input type="submit" value="Show me the pinboard">
+      </form>
       </div>
-      <h2>Samples</h2>
+      <div id="github-pinboard"></div>
       <h2>
         <a href="http://github.com/camping/camping">
           camping/camping
@@ -160,9 +197,51 @@
         </a>
       </h2>
       <div id="shoesPinboard" class="pinboard"></div>
+      <h2>How To Use</h2>
+      <div class="section">
+        <ol>
+          <li>
+          Include the library:
+  <pre>
+    <span class="Identifier">&lt;</span><span class="Statement">script</span><span class="Identifier"> </span><span class="Type">src</span><span class="Identifier">=</span><span class="String">&quot;<a href="http://copypastel.github.com/github-pinboard/lib/github-pinboard.js">http://copypastel.github.com/github-pinboard/lib/github-pinboard.js</a>&quot;</span><span class="Identifier">&gt;</span><span class="Identifier">&lt;</span><span class="Statement">/script</span><span class="Identifier">&gt;</span>
+  </pre>
+          </li>
+          <li>
+          Create a container to hold the pinboard:
+  <pre>
+    <span class="Identifier">&lt;</span><span class="Statement">div</span><span class="Identifier"> </span><span class="Type">id</span><span class="Identifier">=</span><span class="String">&quot;github-pinboard&quot;</span><span class="Identifier">&gt;</span><span class="Identifier">&lt;/</span><span class="Statement">div</span><span class="Identifier">&gt;</span>
+  </pre>
+          </li>
+          <li>
+          Create the pinboard:
+  <pre>
+    <span class="Identifier">&lt;</span><span class="Statement">script</span><span class="Identifier">&gt;</span>
+      <span class="Special">  </span><span class="Comment">/*  Only the user and repo names are needed to display</span>
+      <span class="Comment">  *  a pinboard. containerId defaults to &quot;github-pinboard&quot;.</span>
+      <span class="Comment">  */</span>
+      <span class="Special">  </span><span class="Identifier">var</span><span class="Special"> user = </span><span class="String">&quot;joyent&quot;</span><span class="Special">, repo = </span><span class="String">&quot;node&quot;</span><span class="Special">, containerId = </span><span class="String">&quot;github-pinboard&quot;</span>
+      <span class="Special">  </span><span class="Statement">window</span><span class="Special">.onload = </span><span class="Identifier">function</span>()<span class="Special"> </span><span class="Identifier">{</span>
+      <span class="Special">    </span><span class="Statement">new</span><span class="Special"> GithubPinboard</span>(<span class="Special">user, repo, containerId</span>)<span class="Special">; </span>
+      <span class="Special">  </span><span class="Identifier">}</span>
+    <span class="Identifier">&lt;/</span><span class="Statement">script</span><span class="Identifier">&gt;</span>
+  </pre>
+          </li>
+          <li>
+          Style to your liking:
+    <pre>
+    <span class="Identifier">&lt;</span><span class="Statement">style</span><span class="Identifier">&gt;</span>
+      <span class="Identifier">.github-pinboard-pin</span> <span class="Identifier">{</span>
+        <span class="Type">background</span>: <span class="Constant">black</span>;
+        <span class="Type">border-radius</span>: <span class="Constant">20px</span>;
+      <span class="Identifier">}</span>
+    <span class="Identifier">&lt;/</span><span class="Statement">style</span><span class="Identifier">&gt;</span>
+    </pre>
+          </li>
+        </ol>
+      </div>
 
       <h2>Our Own Contributors</h2>
-      <div id="contributors"></div>
+      <div id="contributors" style="height: 75px;"></div>
     </div>
   </body>
 </html>
